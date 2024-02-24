@@ -8,6 +8,7 @@ import { IoBagCheckOutline } from "react-icons/io5";
 const Deals = () => {
   const [isSwitch, setIsSwitch] = useState();
   const [showModal, setShowModal] = useState(false);
+  const [deals, setDeals] = useState(false);
 
   return (
     <section className="max-w-screen-xl mx-auto px-4">
@@ -18,12 +19,14 @@ const Deals = () => {
           <p className="text-xl ">Here is your deals management </p>
         </div>
         <div>
-          <button className="flex items-center justify-center gap-3 px-6 py-3 bg-[#EA6A12] rounded-full text-white font-bold hover:bg-[#964611]">
+          <button
+            onClick={() => setDeals(!deals)}
+            className="flex items-center justify-center gap-3 px-6 py-3 bg-[#EA6A12] rounded-full text-white font-bold hover:bg-[#964611]"
+          >
             <MdAddBox></MdAddBox> Add Deals
           </button>
         </div>
       </div>
-
       <div className="mt-12">
         {/* start The Month's Special */}
         <div className="lg:flex  items-center justify-center gap-5">
@@ -259,68 +262,157 @@ const Deals = () => {
         </div>
       </section>
       {/* open the modal codes */}
-      {showModal ? (
-        <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[999] outline-none focus:outline-none ">
-            <div className="relative w-[80%] md:w-[600px] my-6 mx-auto max-w-3xl">
-              {/*content*/}
-              <div
-                className={`border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none`}
-              >
-                {/*header*/}
-                <div className="flex items-start justify-between p-10 border-b border-solid border-blueGray-200 rounded-t ">
-                  <h3 className="text-3xl font-semibold border-l-4 border-[#ef6f18]">
-                    Order Now
-                  </h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    // onClick={() => setShowModal(false)}
-                  >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none"></span>
-                  </button>
-                </div>
-                {/*body*/}
-                <div className="md:px-12 px-5 mb-3">
-                  <div>
-                    <p className="text-xl ">Deal Name</p>
-                    <input
-                      className="border text-[#ef6f18] border-red-400 py-3 px-6 w-full rounded-md mt-3 placeholder-[#ef6f18] outline-none "
-                      type="text"
-                      name="name"
-                      id="name"
-                      placeholder="deal Name"
-                    />
+      <div>
+        {/* Order Now Modal */}
+        {showModal ? (
+          <>
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[999] outline-none focus:outline-none ">
+              <div className="relative w-[80%] md:w-[600px] my-6 mx-auto max-w-3xl">
+                {/*content*/}
+                <div
+                  className={`border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none`}
+                >
+                  {/*header*/}
+                  <div className="flex items-start justify-between p-10 border-b border-solid border-blueGray-200 rounded-t ">
+                    <h3 className="text-3xl font-semibold border-l-4 border-[#ef6f18]">
+                      Order Now
+                    </h3>
+                    <button
+                      className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                      // onClick={() => setShowModal(false)}
+                    >
+                      <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none"></span>
+                    </button>
                   </div>
-                  <div className="mt-4">
-                    <p className="text-xl">Deal Price </p>
-                    <input
-                      className="border text-[#ef6f18] border-red-400 py-3 px-6 w-full rounded-md mt-3 placeholder-[#ef6f18] outline-none [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                      type="number"
-                      name="number"
-                      id="number"
-                      placeholder="price"
-                    />
+                  {/*body*/}
+                  <div className="md:px-12 px-5 mb-3">
+                    <div>
+                      <p className="text-xl ">Deal Name</p>
+                      <input
+                        className="border text-[#ef6f18] border-red-400 py-3 px-6 w-full rounded-md mt-3 placeholder-[#ef6f18] outline-none "
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="deal Name"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <p className="text-xl">Deal Price </p>
+                      <input
+                        className="border text-[#ef6f18] border-red-400 py-3 px-6 w-full rounded-md mt-3 placeholder-[#ef6f18] outline-none [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                        type="number"
+                        name="number"
+                        id="number"
+                        placeholder="price"
+                      />
+                    </div>
+                    <button className="px-4 py-3 mt-4 border border-red-500 hover:bg-[#ef6f18] rounded-lg flex items-center gap-3 font-bold text-[#ef6f18] hover:text-white">
+                      Check Out <IoBagCheckOutline className="text-xl " />
+                    </button>
                   </div>
-                  <button className="px-4 py-3 mt-4 border border-red-500 hover:bg-[#ef6f18] rounded-lg flex items-center gap-3 font-bold text-[#ef6f18] hover:text-white">
-                    Check Out <IoBagCheckOutline className="text-xl " />
-                  </button>
-                </div>
-                {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                  <button
-                    className="text-[#ef6f18] background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 border rounded-lg hover:bg-[#ef6f18] hover:text-white border-red-500"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Close
-                  </button>
+                  {/*footer*/}
+                  <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                    <button
+                      className="text-[#ef6f18] background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 border rounded-lg hover:bg-[#ef6f18] hover:text-white border-red-500"
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-        </>
-      ) : null}
+            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          </>
+        ) : null}
+      </div>
+      <div>
+        {/* Deals Page modal */}
+        {deals ? (
+          <>
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[999] outline-none focus:outline-none ">
+              <div className="relative w-[80%] md:w-[600px] my-6 mx-auto max-w-3xl">
+                {/*content*/}
+                <div
+                  className={`border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none`}
+                >
+                  {/*header*/}
+                  <div className="flex items-start justify-between p-10 border-b border-solid border-blueGray-200 rounded-t ">
+                    <h3 className="text-3xl font-semibold border-l-4 border-[#ef6f18]">
+                      Deals
+                    </h3>
+                    <button
+                      className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                      // onClick={() => setShowModal(false)}
+                    >
+                      <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none"></span>
+                    </button>
+                  </div>
+                  {/*body*/}
+                  <div className="md:px-12 px-5 mb-3 overflow-y-scroll">
+                    <div>
+                      <p className="text-xl ">Deal Name</p>
+                      <input
+                        className="border text-[#ef6f18] border-red-400 py-3 px-6 w-full rounded-md mt-3 placeholder-[#ef6f18] outline-none "
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="deal Name"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <p className="text-xl">Deal Images </p>
+                      <input
+                        className="border text-[#ef6f18] border-red-400 py-3 px-6 w-full rounded-md mt-3 placeholder-[#ef6f18] outline-none "
+                        type="file"
+                        name="number"
+                        id="number"
+                        placeholder="price"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <p className="text-xl">Deal price</p>
+                      <input
+                        className="border text-[#ef6f18] border-red-400 py-3 px-6 w-full rounded-md mt-3 placeholder-[#ef6f18] outline-none "
+                        type="number"
+                        name="number"
+                        id="number"
+                        placeholder="price"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <p className="text-xl">Deal description</p>
+                      <textarea
+                        className="border text-[#ef6f18] border-red-400 py-3 px-6 w-full rounded-md mt-3 placeholder-[#ef6f18] outline-none "
+                        type="text"
+                        name="number"
+                        id="number"
+                        placeholder="description
+                        "
+                      />
+                    </div>
+                    <button className="px-4 py-3 mt-4 border border-red-500 hover:bg-[#ef6f18] rounded-lg flex items-center gap-3 font-bold text-[#ef6f18] hover:text-white">
+                      Save <IoBagCheckOutline className="text-xl " />
+                    </button>
+                  </div>
+                  {/*footer*/}
+                  <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                    <button
+                      className="text-[#ef6f18] background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 border rounded-lg hover:bg-[#ef6f18] hover:text-white border-red-500"
+                      type="button"
+                      onClick={() => setDeals(false)}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          </>
+        ) : null}
+      </div>
     </section>
   );
 };

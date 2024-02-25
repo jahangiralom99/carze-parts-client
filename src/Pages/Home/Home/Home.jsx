@@ -1,5 +1,6 @@
 
 import Deals from "../../Deals/Deals";
+import SalesReport from "../../SalesReport/SalesReport";
 import Banner from "../Banner/Banner";
 import Partners from "../Partners/Partners";
 import Seller from "../Seller/Seller";
@@ -10,7 +11,8 @@ const Home = () => {
       {/* <Banner />
       <Partners />
       <Seller /> */}
-      <Deals/>
+      {/* <Deals/> */}
+      <SalesReport/>
     </div>
   );
 };

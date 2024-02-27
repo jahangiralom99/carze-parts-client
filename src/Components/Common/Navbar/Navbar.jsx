@@ -2,10 +2,17 @@ import { useState } from "react";
 import logo from "../../../assets/logo.webp";
 import { Link, NavLink } from "react-router-dom";
 import { BsX } from "react-icons/bs";
+import { MdOutlineShoppingBag } from "react-icons/md";
+import Cart from "../Cart/Cart";
+import Profile from "../../Shared/Profile/Profile";
+import useAuth from "../../../Hooks/useAuth";
+import { FaUserAltSlash } from "react-icons/fa";
 
 const Navbar = () => {
   const [open, setOpen] = useState(true);
   const [search, setSearch] = useState(true);
+  const [isCart, setIsCart] = useState(false);
+  const { user } = useAuth();
 
   const links = (
     <>
@@ -54,7 +61,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="sticky navbar p-5 max-w-screen-xl mx-auto z-[999]  bg-[#e6e7ee] top-0 ">
+    <nav className="sticky navbar p-5 max-w-screen-xl mx-auto z-[999]  bg-[#e6e7ee] top-0 ">
       <div className="navbar-start ">
         <div className="hidden lg:block">
           <div className="flex list-none items-center font-bold">{links}</div>
@@ -94,14 +101,19 @@ const Navbar = () => {
         </div>
       </div>
       {!open && (
-        <div className="absolute top-20 left-0 menu menu-sm dropdown-content mt-3 z-[50] bg-[#e6e7ee]  rounded-xl p-16 box1 transition duration-1000 delay-700">
+        // Button Cross
+        <div className="absolute  top-20 left-0 menu menu-sm dropdown-content mt-3 z-[50] bg-[#e6e7ee]  rounded-xl p-16 box1 transition duration-1000 delay-700">
           <div
             onClick={() => setOpen(!open)}
             className="absolute -top-5 -right-4 btn btn-ghost btn-circle box-shadow-side bg-[#e6e7ee] font-bold text-1xl"
           >
             X
           </div>
-          <div className="">{links}</div>
+
+          <div className=" flex flex-col items-center justify-center">
+            {links}
+            {/* <Profile /> */}
+          </div>
         </div>
       )}
       <div className="navbar-center">
@@ -129,7 +141,8 @@ const Navbar = () => {
           </button>
         </div>
         {!search && (
-          <div className="absolute left-0 bg-[#e6e7ee] flex items-center justify-center w-full h-[300px] top-0 transition delay-700 duration-500 z-[9999] px-6">
+          // search field
+          <div className="absolute left-0 bg-[#e6e7ee] flex items-center justify-center w-full h-[300px] top-0 transition delay-700 duration-500 z-[99] px-6">
             <div className="group">
               <svg viewBox="0 0 24 24" aria-hidden="true" className="icon">
                 <g>
@@ -147,27 +160,55 @@ const Navbar = () => {
             </div>
           </div>
         )}
-        <button className="btn btn-ghost btn-circle box-shadow-side transition duration-1000 delay-700">
-          <div className="indicator">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              />
-            </svg>
-            <span className="badge badge-xs badge-primary indicator-item"></span>
+        {user?.email ? (
+          <div className="hidden md:block">
+            <Profile></Profile>
           </div>
+        ) : (
+          <Link to="/login" className="hidden md:block">
+            <button className="border flex items-center justify-center  btn-ghost btn-circle box-shadow-side">
+              <FaUserAltSlash className="text-2xl" />
+            </button>
+          </Link>
+        )}
+        <button
+          onClick={() => setIsCart(!isCart)}
+          className={` btn btn-ghost btn-circle box-shadow-side  delay-700`}
+        >
+          <MdOutlineShoppingBag className="text-2xl" />
+          <div className="absolute top-1 right-7 text-red-500 text-2xl">0</div>
         </button>
+        <div className={`absolute`}>
+          {isCart ? (
+            <div
+              className={` ${
+                isCart
+                  ? "w-80 md:w-96 right-0 top-0 fixed duration-x-700 delay-500 "
+                  : " "
+              } h-screen bg-[#e6e7ee] z-[999] box1 ease-in-out`}
+            >
+              <div className="flex justify-between items-center p-2 border-b-2 border-black ">
+                <div
+                  onClick={() => setIsCart(!search)}
+                  className=" btn btn-ghost  box-shadow-side bg-[#e6e7ee] font-bold text-1xl"
+                >
+                  X
+                </div>
+                <div className=" border-box border-black text-xl font-bold p-6">
+                  Shopping Cart
+                </div>
+                <div className=" border-black p-5  border-box font-bold text-red-500">
+                  0
+                </div>
+              </div>
+              <Cart />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

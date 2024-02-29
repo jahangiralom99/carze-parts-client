@@ -5,9 +5,9 @@ import Seller from "../Seller/Seller";
 const Home = () => {
   return (
     <div className="max-w-screen-xl mx-auto">
-      {/* <Banner />
+      <Banner />
       <Partners />
-      <Seller /> */}
+      <Seller />
     </div>
   );
 };

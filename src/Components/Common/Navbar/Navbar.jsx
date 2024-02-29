@@ -61,7 +61,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="sticky navbar p-5 max-w-screen-xl mx-auto z-[999]  bg-[#e6e7ee] top-0 ">
+    <nav className="sticky navbar p-5 max-w-screen-xl mx-auto z-[99]  bg-[#e6e7ee] top-0 ">
       <div className="navbar-start ">
         <div className="hidden lg:block">
           <div className="flex list-none items-center font-bold">{links}</div>
@@ -142,7 +142,7 @@ const Navbar = () => {
         </div>
         {!search && (
           // search field
-          <div className="absolute left-0 bg-[#e6e7ee] flex items-center justify-center w-full h-[300px] top-0 transition delay-700 duration-500 z-[99] px-6">
+          <div className="absolute left-0 bg-white flex items-center justify-center w-full h-[300px] top-20 transition delay-700 duration-500 z-[99] px-6">
             <div className="group">
               <svg viewBox="0 0 24 24" aria-hidden="true" className="icon">
                 <g>
@@ -150,7 +150,9 @@ const Navbar = () => {
                 </g>
               </svg>
               <input className="input" type="search" placeholder="Search" />
-              <button className="box-shadow-side px-4 py-1">Search</button>
+              <button className="box-shadow-side px-4 py-1 text-red-500 font-bold">
+                Search
+              </button>
             </div>
             <div
               onClick={() => setSearch(!search)}

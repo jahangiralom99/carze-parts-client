@@ -3,7 +3,7 @@ import slider2 from "../../../assets/slideshowV2-bg2.webp";
 
 const Banner = () => {
   return (
-    <div className="max-w-screen-xl mx-auto px-5">
+    <div className="px-5">
       <div className="carousel w-full">
         <div
           id="slide1"
@@ -22,9 +22,7 @@ const Banner = () => {
             />
             <div className="inset-0 bg-black bg-opacity-50"></div>
             <div className="absolute inset-0 px-7">
-              <div
-                className="absolute md:left-[40%] md:lg:left-[60%] md:bottom-[30%] bottom-[20%]"
-              >
+              <div className="absolute md:left-[40%] md:lg:left-[60%] md:bottom-[30%] bottom-[20%]">
                 <h1
                   data-aos="fade-right"
                   data-aos-duration="2000"

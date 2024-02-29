@@ -6,14 +6,15 @@ const Login = () => {
       <div className="text-center">
         <img className="w-40 inline center" src={logo} alt="logoCar" />
       </div>
-          <hr className="border mt-3 border-black" />
-          <h1 className="text-center font-bold mt-4 border-b-2 border-black">Please login</h1>
+      <hr className="border mt-3 border-black" />
+      <h1 className="text-center font-bold mt-4 border-b-2 w-44 mx-auto border-red-500 ">
+        Please login
+      </h1>
       <form>
-       
         <div className="mt-3">
           <label className="text-1xl font-bold outline-0 ">Email</label> <br />
           <input
-            type="email" 
+            type="email"
             className="border-box font-semibold bg-none rounded-sm w-full py-3 px-4 border-none outline-0 "
             required
             placeholder="Your email address"
@@ -24,13 +25,13 @@ const Login = () => {
           <br />
           <input
             type="password"
-            className="border-box font-semibold bg-none rounded-sm w-full py-3 px-4 border-none outline-0 "
+            className="border-box  font-semibold bg-none rounded-sm w-full py-3 px-4 border-none outline-0 "
             required
             placeholder="Your password"
           />
         </div>
         <button
-          className="w-full py-1 box-shadow-side font-bold uppercase rounded-md "
+          className="w-full py-1 box-shadow-side font-bold uppercase rounded-md text-red-500"
           type="submit"
         >
           Login
@@ -40,15 +41,16 @@ const Login = () => {
           <h1 className="font-bold uppercase">Or</h1>
           <hr className="border w-44 border-black" />
         </div>
-          </form>
-          <div className="flex items-center justify-center">
-          <Link to="/register"
-          className=" py-2 p-4 box-shadow-side font-bold rounded-md mt-4 text-green-500"
+      </form>
+      <div className="flex items-center justify-center">
+        <Link
+          to="/register"
+          className=" py-2 p-4 box-shadow-side font-bold rounded-md mt-4 text-red-500"
           type="submit"
         >
           Register
         </Link>
-         </div>
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Footer = () => {
           <div className="text-center">
             <img className="inline" width={180} src={logo} alt="LogoImage" />
           </div>
-          <p className="mt-4 text-left">
+          <p className="mt-4 text-left font-bold">
             Subscribe our newsletter and get discount 30% off
           </p>
         </div>

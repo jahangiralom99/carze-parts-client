@@ -7,6 +7,7 @@ import Cart from "../Cart/Cart";
 import Profile from "../../Shared/Profile/Profile";
 import useAuth from "../../../Hooks/useAuth";
 import { FaUserAltSlash } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [open, setOpen] = useState(true);
@@ -61,10 +62,10 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="sticky navbar p-5 max-w-screen-xl mx-auto z-[99]  bg-[#e6e7ee] top-0 ">
+    <nav className="sticky navbar p-5 px-4 mx-auto z-[99]  bg-[#e6e7ee] top-0 ">
       <div className="navbar-start ">
         <div className="hidden lg:block">
-          <div className="flex list-none items-center font-bold">{links}</div>
+          <div className="flex list-none items-center justify-center font-bold">{links}</div>
         </div>
         <div
           onClick={() => setOpen(!open)}
@@ -112,7 +113,7 @@ const Navbar = () => {
 
           <div className=" flex flex-col items-center justify-center">
             {links}
-            {/* <Profile /> */}
+            <div>{user?.email && <Profile></Profile>}</div>
           </div>
         </div>
       )}
@@ -140,9 +141,12 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        {!search && (
-          // search field
-          <div className="absolute left-0 bg-white flex items-center justify-center w-full h-[300px] top-20 transition delay-700 duration-500 z-[99] px-6">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: search ? 0 : 1 }}
+          className="absolute left-0 bg-white flex items-center justify-center w-full h-[300px] top-20  px-6"
+        >
+          <div>
             <div className="group">
               <svg viewBox="0 0 24 24" aria-hidden="true" className="icon">
                 <g>
@@ -161,9 +165,10 @@ const Navbar = () => {
               X
             </div>
           </div>
-        )}
+        </motion.div>
+
         {user?.email ? (
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Profile></Profile>
           </div>
         ) : (

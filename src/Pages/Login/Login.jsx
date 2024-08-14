@@ -1,8 +1,32 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.webp";
+import useAuth from "../../Hooks/useAuth";
+import ConfettiExplosion from "react-confetti-explosion";
 const Login = () => {
+  const { user, loginUser } = useAuth();
+
+  const handleLoginBtn = async (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const email = from.email.value;
+    const password = from.password.value;
+    const userInfo = {
+      name: from.name.value,
+      email: from.email.value,
+      password: from.password.value,
+    };
+
+    try {
+      const res = await loginUser(email, password);
+      <ConfettiExplosion />
+    } catch (err) {
+      console.log(err.massage);
+    }
+  };
+
+console.log(user);
   return (
-    <div className="mx-auto max-w-screen-xl border-box mt-12 w-80 md:w-[500px]  md:p-12 p-8">
+    <div className="mx-auto  max-w-screen-xl border-box mt-12 w-80 md:w-[500px]  md:p-12 p-8">
       <div className="text-center">
         <img className="w-40 inline center" src={logo} alt="logoCar" />
       </div>
@@ -10,11 +34,11 @@ const Login = () => {
       <h1 className="text-center font-bold mt-4 border-b-2 w-44 mx-auto border-red-500 ">
         Please login
       </h1>
-      <form>
+      <form onSubmit={handleLoginBtn}>
         <div className="mt-3">
           <label className="text-1xl font-bold outline-0 ">Email</label> <br />
           <input
-            type="email"
+            type="email" name="email"
             className="border-box font-semibold bg-none rounded-sm w-full py-3 px-4 border-none outline-0 "
             required
             placeholder="Your email address"
@@ -24,7 +48,7 @@ const Login = () => {
           <label className="text-1xl font-bold outline-0 ">Password</label>{" "}
           <br />
           <input
-            type="password"
+            type="password" name="password"
             className="border-box  font-semibold bg-none rounded-sm w-full py-3 px-4 border-none outline-0 "
             required
             placeholder="Your password"

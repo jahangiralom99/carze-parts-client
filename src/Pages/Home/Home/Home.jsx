@@ -4,7 +4,7 @@ import Seller from "../Seller/Seller";
 
 const Home = () => {
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="">
       <Banner />
       <Partners />
       <Seller />
